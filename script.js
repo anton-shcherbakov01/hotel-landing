@@ -26,36 +26,37 @@
         t.addEventListener("mouseover", n), t.addEventListener("mouseout", s)
     }
 	
-	// Improved moving background with requestAnimationFrame for better performance and smoothness
+	// Background animation
 	let pos = 0;
 	function animateBackground() {
-		pos += 1; // Adjust speed as needed
-		document.getElementsByClassName('moving-image')[0].style.backgroundPosition = pos + "px 0px";
+		pos += 1;
+		document.querySelector('.moving-image').style.backgroundPosition = pos + "px 0px";
 		requestAnimationFrame(animateBackground);
 	}
 	animateBackground();
 	
 	$(document).ready(function() {			
 		
-		$('.case-study-name:nth-child(1)').on('mouseenter', function() {
+		// Rooms hover
+		$('.case-study-name:nth-child(1)').on('mouseenter click', function() {
 			$('.case-study-name.active').removeClass('active');
 			$('.case-study-images li.show').removeClass('show');
 			$('.case-study-images li:nth-child(1)').addClass('show');
 			$('.case-study-name:nth-child(1)').addClass('active');
 		})
-		$('.case-study-name:nth-child(2)').on('mouseenter', function() {
+		$('.case-study-name:nth-child(2)').on('mouseenter click', function() {
 			$('.case-study-name.active').removeClass('active');
 			$('.case-study-images li.show').removeClass('show');
 			$('.case-study-images li:nth-child(2)').addClass('show');
 			$('.case-study-name:nth-child(2)').addClass('active');
 		})
-		$('.case-study-name:nth-child(3)').on('mouseenter', function() {
+		$('.case-study-name:nth-child(3)').on('mouseenter click', function() {
 			$('.case-study-name.active').removeClass('active');
 			$('.case-study-images li.show').removeClass('show');
 			$('.case-study-images li:nth-child(3)').addClass('show');
 			$('.case-study-name:nth-child(3)').addClass('active');
 		})
-		$('.case-study-name:nth-child(4)').on('mouseenter', function() {
+		$('.case-study-name:nth-child(4)').on('mouseenter click', function() {
 			$('.case-study-name.active').removeClass('active');
 			$('.case-study-images li.show').removeClass('show');
 			$('.case-study-images li:nth-child(4)').addClass('show');
@@ -63,36 +64,55 @@
 		})
 		$('.case-study-name:nth-child(1)').trigger('mouseenter');
 
-		// Added interesting JS: Simple parallax effect on the room images when hovering over names
-		// This creates a subtle 3D-like tilt based on mouse position relative to the image
-		$('.case-study-name').on('mousemove', function(e) {
-			const $image = $('.case-study-images li.show');
-			if ($image.length) {
-				const rect = $image[0].getBoundingClientRect();
-				const mouseX = e.clientX - rect.left;
-				const mouseY = e.clientY - rect.top;
-				const percentX = (mouseX / rect.width) * 2 - 1;
-				const percentY = (mouseY / rect.height) * 2 - 1;
-				const tiltX = percentY * 5; // Max 5deg tilt
-				const tiltY = -percentX * 5;
-				$image.css('transform', `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-50%)`);
-			}
+		// Parallax on room images
+		$('.case-study-images li').on('mousemove', function(e) {
+			const $this = $(this);
+			const rect = $this[0].getBoundingClientRect();
+			const mouseX = e.clientX - rect.left;
+			const mouseY = e.clientY - rect.top;
+			const percentX = (mouseX / rect.width) * 2 - 1;
+			const percentY = (mouseY / rect.height) * 2 - 1;
+			const tiltX = percentY * 5;
+			const tiltY = -percentX * 5;
+			$this.css('transform', `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`);
 		}).on('mouseleave', function() {
-			const $image = $('.case-study-images li.show');
-			$image.css('transform', 'translateY(-50%)'); // Reset
+			$(this).css('transform', 'perspective(1000px) rotateX(0deg) rotateY(0deg)');
 		});
 
-		// Added interesting JS: Click on "full info" opens a simple modal with placeholder details (fade in/out animation)
-		// This enhances interactivity without external libs
-		$('body').append('<div id="info-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; justify-content:center; align-items:center;"><div style="background:#fff; padding:20px; border-radius:10px; max-width:400px; text-align:center;"><h3>Suite Details</h3><p>This is placeholder info for the suite. Add real content here.</p><button id="close-modal">Close</button></div></div>');
+		// Modal for full info
+		$('body').append('<div id="info-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100vh; background:rgba(0,0,0,0.8); z-index:10000; display:flex; justify-content:center; align-items:center;"><div style="background:#fff; padding:30px; border-radius:10px; max-width:500px; text-align:center; color:#000;"><h3>Suite Details</h3><p id="modal-content">This is placeholder info for the suite. Add real content here.</p><button id="close-modal" class="btn btn-secondary">Close</button></div></div>');
 		$('.full-info-link').on('click', function(e) {
 			e.preventDefault();
 			const suiteName = $(this).closest('li').find('p').text();
-			$('#info-modal h3').text(suiteName + ' Details');
+			const placeholderDetails = {
+				'suite tanya': 'Luxury suite with ocean view, king bed, and private balcony.',
+				'suite helen': 'Cozy suite with city view, queen bed, and modern amenities.',
+				'suite andrea': 'Spacious suite with garden access, two beds, and spa bath.',
+				'suite diana': 'Premium suite with rooftop terrace, king bed, and jacuzzi.'
+			};
+			$('#info-modal h3').text(suiteName.charAt(0).toUpperCase() + suiteName.slice(1) + ' Details');
+			$('#modal-content').text(placeholderDetails[suiteName] || 'Details not available.');
 			$('#info-modal').fadeIn(300);
 		});
 		$('#close-modal').on('click', function() {
 			$('#info-modal').fadeOut(300);
+		});
+
+		// Smooth scroll for navigation
+		$('a.nav-link, a[href="#rooms"]').on('click', function(e) {
+			e.preventDefault();
+			const target = $(this.hash);
+			if (target.length) {
+				$('html, body').animate({
+					scrollTop: target.offset().top - 70
+				}, 800);
+			}
+		});
+
+		// Contact form submission (placeholder)
+		$('.contact-form').on('submit', function(e) {
+			e.preventDefault();
+			alert('Message sent! (This is a placeholder)');
 		});
 	});
 	
