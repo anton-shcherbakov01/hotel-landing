@@ -107,7 +107,7 @@ body {
 }
 
 .hero-section .moving-image {
-  background: url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80") repeat-x;
+  background: url("https://thumbs.dreamstime.com/b/vector-hotel-pattern-hotel-seamless-background-vector-hotel-pattern-hotel-seamless-background-vector-illustration-114148581.jpg") repeat-x;
   background-size: cover;
   position: absolute;
   top: 0;
@@ -292,12 +292,12 @@ body {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 30px rgba(14, 14, 14, 0.35);
-  z-index: 1;
+  display: none;
 }
 
 .rooms-section .case-study-images li.show {
   opacity: 1;
-  z-index: 2;
+  display: block;
 }
 
 .rooms-section .case-study-images li img {
@@ -673,5 +673,14 @@ body {
   }
   .section-title {
     font-size: 28px;
+  }
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  .cursor, .cursor2, .cursor3 {
+    display: none;
   }
 }

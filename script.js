@@ -75,10 +75,11 @@
 			$('.case-study-name.active').removeClass('active');
 			$('.case-study-name:nth-child(' + index + ')').addClass('active');
 			$('.case-study-images li.show').animate({opacity: 0}, 300, function() {
-				$(this).removeClass('show');
-				$('.case-study-images li:nth-child(' + index + ')').addClass('show').css('opacity', 0).animate({opacity: 1}, 300);
+				$(this).removeClass('show').hide();
 			});
+			$('.case-study-images li:nth-child(' + index + ')').show().addClass('show').css('opacity', 0).animate({opacity: 1}, 300);
 		}
+		$('.case-study-images li:not(.show)').hide();
 		$('.case-study-name:nth-child(1)').trigger('mouseenter');
 
 		// Optimized Parallax on room images with throttling
