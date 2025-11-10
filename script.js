@@ -55,16 +55,20 @@
 			$(this).css('--index', index + 1);
 		});
 
-		$('.case-study-name:nth-child(1)').on('mouseenter click', function() {
+		$('.case-study-name:nth-child(1)').on('mouseenter click', function(e) {
+			e.preventDefault();
 			updateRoom(1);
 		})
-		$('.case-study-name:nth-child(2)').on('mouseenter click', function() {
+		$('.case-study-name:nth-child(2)').on('mouseenter click', function(e) {
+			e.preventDefault();
 			updateRoom(2);
 		})
-		$('.case-study-name:nth-child(3)').on('mouseenter click', function() {
+		$('.case-study-name:nth-child(3)').on('mouseenter click', function(e) {
+			e.preventDefault();
 			updateRoom(3);
 		})
-		$('.case-study-name:nth-child(4)').on('mouseenter click', function() {
+		$('.case-study-name:nth-child(4)').on('mouseenter click', function(e) {
+			e.preventDefault();
 			updateRoom(4);
 		})
 		function updateRoom(index) {
