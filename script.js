@@ -73,9 +73,11 @@
 		})
 		function updateRoom(index) {
 			$('.case-study-name.active').removeClass('active');
-			$('.case-study-images li.show').removeClass('show').css('opacity', 0);
-			$('.case-study-images li:nth-child(' + index + ')').addClass('show').animate({opacity: 1}, 300);
 			$('.case-study-name:nth-child(' + index + ')').addClass('active');
+			$('.case-study-images li.show').animate({opacity: 0}, 300, function() {
+				$(this).removeClass('show');
+			});
+			$('.case-study-images li:nth-child(' + index + ')').addClass('show').css('opacity', 0).animate({opacity: 1}, 300);
 		}
 		$('.case-study-name:nth-child(1)').trigger('mouseenter');
 
@@ -113,19 +115,19 @@
 			$('#info-modal').css('display', 'flex').animate({opacity: 1}, 300);
 			$('#info-modal > div').animate({transform: 'scale(1)'}, 300);
 		});
-		$('#close-modal').on('click', function() {
+		$(document).on('click', '#close-modal', function() {
 			$('#info-modal').animate({opacity: 0}, 300, function() { $(this).css('display', 'none'); });
 			$('#info-modal > div').animate({transform: 'scale(0.9)'}, 300);
 		});
 
 		// Smooth scroll for navigation
-		$('a.nav-link, a[href="#rooms"]').on('click', function(e) {
+		$('a.nav-link, .footer-links a, a.btn[href^="#"]').on('click', function(e) {
 			e.preventDefault();
 			const target = $(this.hash);
 			if (target.length) {
 				$('html, body').animate({
 					scrollTop: target.offset().top - 70
-				}, 800, 'easeInOutExpo');
+				}, 800, 'swing');
 			}
 		});
 
