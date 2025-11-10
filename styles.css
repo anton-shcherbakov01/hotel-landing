@@ -1,14 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic,cyrillic-ext,devanagari,greek,greek-ext,latin-ext,vietnamese");
-html, body, * {
-  cursor: none !important;
-}
-
 body {
   background: #1f2029;
   font-family: 'Poppins', sans-serif;
   color: #fff;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  cursor: none;
+}
+
+/* Override cursors for interactive and text elements */
+a, button, input, textarea, select, .hover-target, .full-info-link, .nav-link, .btn-primary, .social-icons a, .navbar-toggler {
+  cursor: pointer !important;
+}
+
+p, div, span, li, td, th, .hero-content, .section-title, .about-section p, .service-card p, .copyright, .form-control {
+  cursor: text !important;
 }
 
 /* Loader */
