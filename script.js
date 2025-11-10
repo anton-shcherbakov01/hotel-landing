@@ -169,6 +169,11 @@
 			e.preventDefault();
 			alert('Message sent! (This is a placeholder)');
 		});
+
+    // Hide loader on window load
+    $(window).on('load', function() {
+      $('#loader').fadeOut(300);
+    });
 	});
 	
 })(jQuery);
