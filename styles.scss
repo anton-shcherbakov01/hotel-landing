@@ -97,7 +97,7 @@ body {
   overflow: hidden;
 
   .moving-image {
-    background: url('https://ivang-design.com/svg-load/hotel/[email protected]') repeat-x;
+    background: url('https://i.pinimg.com/736x/a3/df/ba/a3dfbaf1b457a646eb91546ff367b9d3.jpg') repeat-x;
     background-size: cover;
     position: absolute;
     top: 0; 
@@ -310,10 +310,11 @@ body {
           background: rgba(0,0,0,0.7);
         }
 
-        img {
-          width: 24px;
-          height: 24px;
+        i {
+          font-size: 20px;
+          color: $white;
           margin-right: 10px;
+          display: inline-block;
           transition: transform 0.3s ease;
 
           &:hover {
