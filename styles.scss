@@ -121,7 +121,7 @@ body {
   overflow: hidden;
 
   .moving-image {
-    background: url('https://plus.unsplash.com/premium_photo-1661964071015-d97428970584?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bHV4dXJ5JTIwaG90ZWx8ZW58MHx8MHx8fDA%3D&w=1000&q=80') repeat-x;
+    background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') repeat-x;
     background-size: cover;
     position: absolute;
     top: 0; 
@@ -293,9 +293,11 @@ body {
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0 30px rgba(14,14,14,.35);
+      z-index: 1; // Low z-index for images
 
       &.show {
         opacity: 1;
+        z-index: 2; // Bring active image to front
       }
 
       img {
@@ -566,19 +568,20 @@ body {
   left: -100px;
   top: 50%;
   will-change: transform; // Optimize for performance
+  z-index: 999999 !important; // Extremely high z-index to ensure on top
 
   &.cursor {
     background-color: $white;
     height: 0;
     width: 0;
-    z-index: 99999;
+    z-index: 999999;
   }
 
   &.cursor2,
   &.cursor3 {
     height: 36px;
     width: 36px;
-    z-index: 99998;
+    z-index: 999998;
     transition: transform 0.1s ease-out; // Reduced transition time for snappier feel
 
     &.hover {

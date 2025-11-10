@@ -76,8 +76,8 @@
 			$('.case-study-name:nth-child(' + index + ')').addClass('active');
 			$('.case-study-images li.show').animate({opacity: 0}, 300, function() {
 				$(this).removeClass('show');
+				$('.case-study-images li:nth-child(' + index + ')').addClass('show').css('opacity', 0).animate({opacity: 1}, 300);
 			});
-			$('.case-study-images li:nth-child(' + index + ')').addClass('show').css('opacity', 0).animate({opacity: 1}, 300);
 		}
 		$('.case-study-name:nth-child(1)').trigger('mouseenter');
 
