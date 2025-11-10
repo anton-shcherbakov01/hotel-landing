@@ -14,13 +14,16 @@ $transparent-white: rgba(255,255,255,.3);
 $primary-color: #007bff;
 $footer-bg: #18191f;
 
+html, body, * {
+  cursor: none !important;
+}
+
 body {
   background: $bg-color;
   font-family: 'Poppins', sans-serif;
   color: $white;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  cursor: none; // Hide default cursor for custom cursor experience
 }
 
 /* Loader */
