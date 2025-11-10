@@ -20,16 +20,6 @@ body {
   color: $white;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  cursor: none;
-}
-
-/* Override cursors for interactive and text elements */
-a, button, input, textarea, select, .hover-target, .full-info-link, .nav-link, .btn-primary, .social-icons a, .navbar-toggler {
-  cursor: pointer !important;
-}
-
-p, div, span, li, td, th, .hero-content, .section-title, .about-section p, .service-card p, .copyright, .form-control {
-  cursor: text !important;
 }
 
 /* Loader */
