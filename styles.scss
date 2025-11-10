@@ -20,6 +20,11 @@ body {
   color: $white;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  cursor: none;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 /* Loader */
@@ -560,7 +565,7 @@ body {
   pointer-events: none;
   left: -100px;
   top: 50%;
-  mix-blend-mode: difference;
+  // mix-blend-mode: difference; // Removed to fix interaction issues
   will-change: transform; // Optimize for performance
 
   &.cursor {
